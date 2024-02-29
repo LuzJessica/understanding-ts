@@ -1,5 +1,7 @@
 var person = {
     name: 'Jéssica',
-    age: '31'
+    age: 31,
+    hobbies: ['Sports', 'Cooking', 'Play games'],
+    role: [1, 'QA']
 };
-console.log(person.name);
+console.log(person.role);
