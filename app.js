@@ -1,15 +1,14 @@
-var User;
-(function (User) {
-    User[User["ADMIN"] = 0] = "ADMIN";
-    User[User["READ_ONLY"] = 1] = "READ_ONLY";
-    User[User["AUTHOR"] = 2] = "AUTHOR";
-})(User || (User = {}));
-;
-var person = {
-    name: 'Jéssica',
-    age: 31,
-    hobbies: ['Sports', 'Cooking', 'Play games'],
-    role: [1, 'QA'],
-    user: User.ADMIN
-};
-console.log(person.user);
+function combine(input1, input2) {
+    var result;
+    if (typeof input1 === 'number' && typeof input2 === 'number') {
+        result = input1 + input2;
+    }
+    else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
+var combinedAges = combine(31, 30);
+console.log(combinedAges);
+var combinedNames = combine('Jéssica', 'Matheus');
+console.log(combinedNames);

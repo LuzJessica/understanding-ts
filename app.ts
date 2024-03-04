@@ -1,17 +1,15 @@
+function combine(input1: number | string, input2: number | string){
+    let result;
+    if(typeof input1 === 'number' && typeof input2 === 'number'){
+        result = input1 + input2;
+    }else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
 
-enum User {ADMIN, READ_ONLY, AUTHOR};
-const person: {
-    name: string;
-    age: number;
-    hobbies: string[];
-    role: [number,string]; //tuple 
-    user: User
-} = {
-    name: 'Jéssica',
-    age: 31,
-    hobbies: ['Sports','Cooking','Play games'],
-    role: [1,'QA'],
-    user: User.ADMIN
-};
+const combinedAges = combine(31,30);
+console.log(combinedAges);
 
-console.log(person.user);
+const combinedNames = combine ('Jéssica','Matheus');
+console.log(combinedNames);
