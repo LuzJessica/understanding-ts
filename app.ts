@@ -1,21 +1,17 @@
-type Combined = number | string;
-type ConversionDescriptor = 'as-number' | 'as-string';
-
-function combine(input1: Combined, input2: Combined, resultConversion: ConversionDescriptor){
-    let result;
-    if(typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number'){
-        result = +input1 + +input2;
-    }else {
-        result = input1.toString() + input2.toString();
-    }
-    return result;
+function add(n1: number, n2: number){
+    return n1 + n2;
 }
 
-const combinedAges = combine(31,30,'as-number');
-console.log(combinedAges);
+function addString (str: string){
+    return str;
+}
 
-const combinedNames = combine('Jéssica','Matheus','as-string');
-console.log(combinedNames);
+let combinedValues: (a: number, b: number) => number;
 
-const combinedStringAges = combine('31','30','as-number');
-console.log(combinedStringAges);
+combinedValues = add;
+combinedValues = addString; /* It returns error because the function 
+addString doesn't match the function defined for the variable 
+combinedValue. It has only one parameter and it's a string. And the variable
+expect 2 parameters and both should be numbers*/
+
+console.log(combinedValues(9,8));
