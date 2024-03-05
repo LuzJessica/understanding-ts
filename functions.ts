@@ -1,4 +1,4 @@
-function add(n1: number, n2: number){
+function add2(n1: number, n2: number){
     return n1 + n2;
 }
 
@@ -13,8 +13,8 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) =>  void){
 
 let combinedValues: (a: number, b: number) => number;
 
-combinedValues = add;
-combinedValues = addString; /* It returns error because the function 
+combinedValues = add2;
+/* combinedValues = addString;  It returns error because the function 
 addString doesn't match the function defined for the variable 
 combinedValue. It has only one parameter and it's a string. And the variable
 expect 2 parameters and both should be numbers*/

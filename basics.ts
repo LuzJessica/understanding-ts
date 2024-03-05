@@ -1,6 +1,6 @@
 console.log("Learning TypeScript!")
 
-function add(n1: number, n2: number, phrase: string, showResult: boolean){
+function add1(n1: number, n2: number, phrase: string, showResult: boolean){
     const result = n1+n2;
     if(result){
         console.log(resultPhrase + result);    
@@ -14,4 +14,4 @@ const number2 = 3.5;
 const printResult = true;
 const resultPhrase = "Result is: ";
 
-add(number1,number2,resultPhrase, printResult);
+add1(number1,number2,resultPhrase, printResult);

@@ -1,5 +1,6 @@
-var userInput;
-var userName;
+"use strict";
+let userInput;
+let userName;
 userInput = 5;
 userInput = 'Jéssica';
 /* userName = userInput; This line shows error because userInput is a
