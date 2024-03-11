@@ -1,15 +1,10 @@
-const hobbies = ['Sports','Cooking'];
-const activeHobbies = ['Hiking'];
+const add = (...num: number[])=> {
+    console.log(num);
+}
 
-activeHobbies.push(...hobbies);
+add(1,3,4,634,8.11);
 
-/*The spread opereator makes possible to add values from an array
-to another array. The values, not add an array inside another one.
-The same is possible for objects */
-
-const person = {
-    name: 'Jéssica',
-    age: 30
-};  
-
-const copiedPerson = {...person};
+/*The rest operator allows user enter as many data as he needs. It's
+always an array of any or specific type. The difference between spread
+operator and rest operator is that one is used when a variable
+is being declared and the other is used during function implementation */
