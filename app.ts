@@ -1,20 +1,18 @@
-let userInput: unknown;
-let userName: string;
+const userName = 'Jéssica';
+let age = 30;
 
-userInput = 5;
-userInput = 'Jéssica';
+age = 29;
 
-/* userName = userInput; This line shows error because userInput is a 
-mutable variable that can receive anything. In this case we can't guarantee
-that it'll always be a string and so assing it to another string variable.
-To do it we need to do at least one validation fisrt */
-
-if(typeof userInput === 'string'){
-    userName = userInput;
+function add(a: number, b: number){
+    let result;
+    result = a+b;
+    return result;
 }
 
-function generateError(message: string, code: number){
-    throw{errorMessage: message, errorCode: code};
+if(age>20){
+    let isOld = true;
 }
 
-generateError("Internal error", 500);
+console.log(isOld); /* we are getting error because let variables can
+accessed only inside where they were created, in this case inside
+the if statement */
