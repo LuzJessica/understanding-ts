@@ -1,4 +1,12 @@
 "use strict";
-const add = (a, b = 1) => a + b;
-/* It means variable b has default value as 1. Default values need to be
-always in the last parameters of the function*/ 
+const hobbies = ['Sports', 'Cooking'];
+const activeHobbies = ['Hiking'];
+activeHobbies.push(...hobbies);
+/*The spread opereator makes possible to add values from an array
+to another array. The values, not add an array inside another one.
+The same is possible for objects */
+const person = {
+    name: 'Jéssica',
+    age: 30
+};
+const copiedPerson = Object.assign({}, person);
