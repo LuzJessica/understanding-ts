@@ -3,12 +3,12 @@ class Department {
     // private description: string;
      private employees: string[] = [];
 
-    constructor (private name: string, private description: string){
+    constructor (private readonly id: number, private name: string, private description: string){
         
     }
 
     describe(){
-        console.log('Department ' + this.name + ' - ' + this.description);
+        console.log('Department '+ this.id + ' - ' + this.name + ' - ' + this.description);
     }
 
     addEmployee(employee:string){
@@ -24,7 +24,7 @@ class Department {
         console.log('Here are the names of our employees in the ' + this.name + ' department: '  + this.employees);
     }
 }
-const hr = new Department('IT', 'Information Technology');
+const hr = new Department(1,'IT', 'Information Technology');
 
 hr.describe();
 hr.addEmployee('Jéssica');
