@@ -1,8 +1,10 @@
 "use strict";
 class Department {
-    constructor(n, d) {
-        this.name = n;
-        this.description = d;
+    constructor(name, description) {
+        this.name = name;
+        this.description = description;
+        // private name: string;
+        // private description: string;
         this.employees = [];
     }
     describe() {
