@@ -1,26 +1,5 @@
-//NORMAL FUNCTION
 
-function add(a: number, b: number){
-    let result;
-    result = a+b;
-    return result;
-}
+const add = (a: number, b:number = 1) => a+b;
 
-//ARROW FUNCTION
-
-const add = (a:number , b:number) => {
-    let result;
-    result = a+b;
-    return result;
-}
-
-// or  
-const add = (a: number, b:number) => {
-    let result;
-    return a+b;
-}
-
-// or even 
-const add = (a: number, b:number) => a+b;
-
-// but this one just if we only have one opperation inside the funcition
+/* It means variable b has default value as 1. Default values need to be
+always in the last parameters of the function*/

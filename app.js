@@ -1,21 +1,4 @@
 "use strict";
-//NORMAL FUNCTION
-function add(a, b) {
-    let result;
-    result = a + b;
-    return result;
-}
-//ARROW FUNCTION
-const add = (a, b) => {
-    let result;
-    result = a + b;
-    return result;
-};
-// or  
-const add = (a, b) => {
-    let result;
-    return a + b;
-};
-// or even 
-const add = (a, b) => a + b;
-// but this one just if we only have one opperation inside the funcition
+const add = (a, b = 1) => a + b;
+/* It means variable b has default value as 1. Default values need to be
+always in the last parameters of the function*/ 
