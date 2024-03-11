@@ -1,7 +1,4 @@
-const userName = 'Jéssica';
-let age = 30;
-
-age = 29;
+//NORMAL FUNCTION
 
 function add(a: number, b: number){
     let result;
@@ -9,10 +6,21 @@ function add(a: number, b: number){
     return result;
 }
 
-if(age>20){
-    let isOld = true;
+//ARROW FUNCTION
+
+const add = (a:number , b:number) => {
+    let result;
+    result = a+b;
+    return result;
 }
 
-console.log(isOld); /* we are getting error because let variables can
-accessed only inside where they were created, in this case inside
-the if statement */
+// or  
+const add = (a: number, b:number) => {
+    let result;
+    return a+b;
+}
+
+// or even 
+const add = (a: number, b:number) => a+b;
+
+// but this one just if we only have one opperation inside the funcition
