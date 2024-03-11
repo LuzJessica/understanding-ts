@@ -1,10 +1,11 @@
-const add = (...num: number[])=> {
-    console.log(num);
-}
+const states = ['MG','SP','RJ','DF','MT','PR'];
 
-add(1,3,4,634,8.11);
+const [minasGerais, saoPaulo , rioDeJaneiro, distritoFederal, matoGrosso ,parana] = states;
 
-/*The rest operator allows user enter as many data as he needs. It's
-always an array of any or specific type. The difference between spread
-operator and rest operator is that one is used when a variable
-is being declared and the other is used during function implementation */
+console.log(minasGerais);
+
+/*The array object  destructuring is usefull when you want to 
+insert the values of the array/objects in another variable. In cases where
+the array/object has few items it seems not to be worth but when you 
+have an array with many items it is */
+
