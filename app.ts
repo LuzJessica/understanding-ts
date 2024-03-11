@@ -24,11 +24,28 @@ class Department {
         console.log('Here are the names of our employees in the ' + this.name + ' department: '  + this.employees);
     }
 }
-const hr = new Department(1,'IT', 'Information Technology');
 
-hr.describe();
-hr.addEmployee('Jéssica');
-hr.addEmployee('Matheus');
-hr.addEmployee('P2');
-hr.countEmployee();
-hr.listOfEmployees();
+class ITDepartment extends Department{
+    private area: string;
+
+    constructor(id:number, name:string, description:string, a: string){
+        super(id, name, description);
+        this.area = a;
+    }
+
+    
+}
+
+
+
+
+const it = new ITDepartment(1,'IT', 'Information Technology', 'Developers');
+
+//it.describe();
+it.addEmployee('Jéssica');
+it.addEmployee('Matheus');
+it.addEmployee('P2');
+//it.countEmployee();
+//it.listOfEmployees();
+
+console.log(it);
