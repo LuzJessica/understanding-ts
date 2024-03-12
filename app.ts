@@ -1,15 +1,12 @@
-class Department {
-    // private name: string;
-    // private description: string;
-     protected employees: string[] = [];
+abstract class Department {
+    static fiscalYear = '2024';
+    protected employees: string[] = [];
 
-    constructor (private readonly id: number, private name: string, private description: string){
+    constructor (protected readonly id: number, private name: string, private description: string){
         
     }
 
-    describe(){
-        console.log('Department '+ this.id + ' - ' + this.name + ' - ' + this.description);
-    }
+    abstract describe(this: Department):void;
 
     addEmployee(employee:string){
         this.employees.push(employee);
@@ -22,6 +19,10 @@ class Department {
 
     listOfEmployees(){
         console.log('Here are the names of our employees in the ' + this.name + ' department: '  + this.employees);
+    }
+
+    static createEmployee(name:string){
+        return {name:name};
     }
 }
 
@@ -38,7 +39,10 @@ class ITDepartment extends Department{
             return;
         }
         this.employees.push(name);
-        
+    }
+
+    describe(){
+        console.log('IT Department - ID: ' + this.id);
     }
 }
 
@@ -67,25 +71,29 @@ class AccountingDepartment extends Department{
         this.reports.push(text);
         this.lastReport = text;
     }
+
+    describe(){
+        console.log('Accounting Department - ID: ' + this.id);
+    }
 }
 
 
-
+const employee1 = Department.createEmployee('Rosângela') 
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment(1,'IT', 'Information Technology', 'Developers');
 
-//it.describe();
+it.describe();
 it.addEmployee('Jéssica');
 it.addEmployee('Matheus');
 it.addEmployee('P2');
 it.addEmployee('Carol');
 
-//it.countEmployee();
-//it.listOfEmployees();
-
 console.log(it);
 
-const ac = new AccountingDepartment(1,[]);
+const ac = new AccountingDepartment(2,[]);
+
+ac.describe();
 ac.addReport('Report of users');
 ac.mostRecentReport = ('Report of devices');
 console.log(ac.mostRecentReport);

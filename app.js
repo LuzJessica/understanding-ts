@@ -4,12 +4,7 @@ class Department {
         this.id = id;
         this.name = name;
         this.description = description;
-        // private name: string;
-        // private description: string;
         this.employees = [];
-    }
-    describe() {
-        console.log('Department ' + this.id + ' - ' + this.name + ' - ' + this.description);
     }
     addEmployee(employee) {
         this.employees.push(employee);
@@ -21,7 +16,11 @@ class Department {
     listOfEmployees() {
         console.log('Here are the names of our employees in the ' + this.name + ' department: ' + this.employees);
     }
+    static createEmployee(name) {
+        return { name: name };
+    }
 }
+Department.fiscalYear = '2024';
 class ITDepartment extends Department {
     constructor(id, name, description, a) {
         super(id, name, description);
@@ -32,6 +31,9 @@ class ITDepartment extends Department {
             return;
         }
         this.employees.push(name);
+    }
+    describe() {
+        console.log('IT Department - ID: ' + this.id);
     }
 }
 class AccountingDepartment extends Department {
@@ -56,17 +58,21 @@ class AccountingDepartment extends Department {
         this.reports.push(text);
         this.lastReport = text;
     }
+    describe() {
+        console.log('Accounting Department - ID: ' + this.id);
+    }
 }
+const employee1 = Department.createEmployee('Rosângela');
+console.log(employee1, Department.fiscalYear);
 const it = new ITDepartment(1, 'IT', 'Information Technology', 'Developers');
-//it.describe();
+it.describe();
 it.addEmployee('Jéssica');
 it.addEmployee('Matheus');
 it.addEmployee('P2');
 it.addEmployee('Carol');
-//it.countEmployee();
-//it.listOfEmployees();
 console.log(it);
-const ac = new AccountingDepartment(1, []);
+const ac = new AccountingDepartment(2, []);
+ac.describe();
 ac.addReport('Report of users');
 ac.mostRecentReport = ('Report of devices');
 console.log(ac.mostRecentReport);
