@@ -34,6 +34,29 @@ class ITDepartment extends Department {
         this.employees.push(name);
     }
 }
+class AccountingDepartment extends Department {
+    constructor(id, reports) {
+        super(id, 'Accounting', 'Reports of Account Department');
+        this.reports = reports;
+        this.lastReport = reports[0];
+    }
+    get mostRecentReport() {
+        if (this.lastReport) {
+            return this.lastReport;
+        }
+        throw new Error('No report found!');
+    }
+    set mostRecentReport(value) {
+        if (!value) {
+            throw new Error('Please, inform a valid value');
+        }
+        this.addReport(value);
+    }
+    addReport(text) {
+        this.reports.push(text);
+        this.lastReport = text;
+    }
+}
 const it = new ITDepartment(1, 'IT', 'Information Technology', 'Developers');
 //it.describe();
 it.addEmployee('Jéssica');
@@ -43,3 +66,8 @@ it.addEmployee('Carol');
 //it.countEmployee();
 //it.listOfEmployees();
 console.log(it);
+const ac = new AccountingDepartment(1, []);
+ac.addReport('Report of users');
+ac.mostRecentReport = ('Report of devices');
+console.log(ac.mostRecentReport);
+console.log(ac);
