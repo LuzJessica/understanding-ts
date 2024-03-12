@@ -1,7 +1,7 @@
 class Department {
     // private name: string;
     // private description: string;
-     private employees: string[] = [];
+     protected employees: string[] = [];
 
     constructor (private readonly id: number, private name: string, private description: string){
         
@@ -33,7 +33,13 @@ class ITDepartment extends Department{
         this.area = a;
     }
 
-    
+    addEmployee(name: string) {
+        if(name === 'Max'){
+            return;
+        }
+        this.employees.push(name);
+        
+    }
 }
 
 
@@ -45,6 +51,8 @@ const it = new ITDepartment(1,'IT', 'Information Technology', 'Developers');
 it.addEmployee('Jéssica');
 it.addEmployee('Matheus');
 it.addEmployee('P2');
+it.addEmployee('Carol');
+
 //it.countEmployee();
 //it.listOfEmployees();
 

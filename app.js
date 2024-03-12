@@ -27,12 +27,19 @@ class ITDepartment extends Department {
         super(id, name, description);
         this.area = a;
     }
+    addEmployee(name) {
+        if (name === 'Max') {
+            return;
+        }
+        this.employees.push(name);
+    }
 }
 const it = new ITDepartment(1, 'IT', 'Information Technology', 'Developers');
 //it.describe();
 it.addEmployee('Jéssica');
 it.addEmployee('Matheus');
 it.addEmployee('P2');
+it.addEmployee('Carol');
 //it.countEmployee();
 //it.listOfEmployees();
 console.log(it);
