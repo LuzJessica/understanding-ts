@@ -1,10 +1,14 @@
 "use strict";
-let user;
-user = {
-    name: 'Jéssica',
-    age: 31,
+class Person {
+    constructor(n) {
+        this.age = 32;
+        this.name = n;
+    }
     greet(phrase) {
         console.log(phrase + ' ' + this.name);
     }
-};
+}
+let user;
+user = new Person('Jéssica');
+console.log(user);
 user.greet('Welcome');
