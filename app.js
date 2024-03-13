@@ -42,6 +42,13 @@ class AccountingDepartment extends Department {
         this.reports = reports;
         this.lastReport = reports[0];
     }
+    static getInstance() {
+        if (this.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment(1, []);
+        return this.instance;
+    }
     get mostRecentReport() {
         if (this.lastReport) {
             return this.lastReport;
@@ -71,9 +78,11 @@ it.addEmployee('Matheus');
 it.addEmployee('P2');
 it.addEmployee('Carol');
 console.log(it);
-const ac = new AccountingDepartment(2, []);
+const ac = AccountingDepartment.getInstance();
+const ac2 = AccountingDepartment.getInstance();
 ac.describe();
 ac.addReport('Report of users');
 ac.mostRecentReport = ('Report of devices');
 console.log(ac.mostRecentReport);
 console.log(ac);
+console.log(ac2);
