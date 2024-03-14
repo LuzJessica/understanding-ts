@@ -1,35 +1,29 @@
-interface AddFn{
-    (a:number, b:number): number;
+type Admin = {
+    name: string;
+    privileges: string[];
 }
 
-let add: AddFn;
+type Employee = {
+    name: string;
+    startDate: Date;
+}
 
-add = (n1: number, n2: number) => {
-    return n1+n2;
+type ElevatedEmployee = Admin & Employee;
+
+let user: ElevatedEmployee;
+
+user = {
+    name: 'Jéssica',
+    privileges: ['Create server'],
+    startDate: new Date()
 };
 
-interface Named{
-    readonly name:string;
-}
+//We can combine all types, for example:
 
-interface Greetable extends Named{
-    greet(phrase:string):void;
-}
+type Combinable = string | number;
+type Numeric = number | boolean;
 
-class Person implements Greetable{
-    name:string;
-    age = 32;
+type Universal = Combinable & Numeric;
 
-    constructor (n:string){
-        this.name = n;
-    }
 
-    greet(phrase: string) {
-        console.log(phrase+ ' ' + this.name);
-    }
-}
-
-let user: Greetable;
-user = new Person('Jéssica'); 
-console.log(user);
-user.greet('Welcome');
+    
