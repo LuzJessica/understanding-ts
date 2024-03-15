@@ -1,13 +1,16 @@
-interface errorContainer{
-    [prop:string]:string;
+type Combinable = string | number;
+
+
+function add(a:number, b: number):number;
+function add(a:number, b: string):string;
+function add(a:string, b: number):string;
+function add(a:string, b: string):number;
+// const add = (a:number, b: string) => string;
+// const add = (a:string, b: number) => string;
+// const add = (a:string, b: string) => string;
+function add(a:Combinable, b: Combinable){
+    if(typeof a === 'string' || typeof b === 'string'){
+        return a.toString() + b.toString();
+    }
+    return a+b;
 }
-
-const errorBag = {
-    email: 'Not a valid email',
-    username: 'Must start with uppercase letter',
-    password: 'Must include letters, numbers and special characters'
-};
-
-console.log(errorBag.email);
-console.log(errorBag.username);
-console.log(errorBag.password);
