@@ -44,3 +44,27 @@ const useVehicle = (vehicle) => {
 };
 useVehicle(v1);
 useVehicle(v2);
+const moveAnimal = (animal) => {
+    let speed;
+    switch (animal.type) {
+        case 'bird':
+            speed = animal.flyingSpeed;
+            break;
+        case 'horse':
+            speed = animal.runningSpeed;
+            break;
+    }
+    console.log("Moving at speed: " + speed);
+};
+let a1;
+a1 = {
+    type: 'bird',
+    flyingSpeed: 10
+};
+let a2;
+a2 = {
+    type: 'horse',
+    runningSpeed: 30
+};
+moveAnimal(a1);
+moveAnimal(a2);
