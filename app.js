@@ -1,10 +1,11 @@
 "use strict";
-// const add = (a:number, b: string) => string;
-// const add = (a:string, b: number) => string;
-// const add = (a:string, b: string) => string;
-function add(a, b) {
-    if (typeof a === 'string' || typeof b === 'string') {
-        return a.toString() + b.toString();
+var _a;
+const fecthedUserData = {
+    id: 'u1',
+    name: 'Jéssica',
+    job: {
+        title: 'CEO',
+        description: 'My own company'
     }
-    return a + b;
-}
+};
+console.log((_a = fecthedUserData === null || fecthedUserData === void 0 ? void 0 : fecthedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
