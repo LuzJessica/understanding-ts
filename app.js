@@ -9,3 +9,7 @@ function countAndDescribe(element) {
     }
     return [element, descriptionText];
 }
+function extractAndConvert(obj, key) {
+    return 'Value: ' + obj[key];
+}
+extractAndConvert({ name: 'Jéssica' }, 'name');
