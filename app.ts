@@ -1,19 +1,30 @@
-interface Lengthy{
-    length: number;
-}
+class DataStorage<T>{
+    private data: T[] = [];
 
-function countAndDescribe<T extends Lengthy>(element: T): [T, string]{
-    let descriptionText = 'Got no value';
-    if(element.length === 1 ){
-        descriptionText = 'Got 1 element.'
-    }else if(element.length > 1){
-        descriptionText = 'Got ' + element.length + ' elements.';
+    addItem(item: T){
+        this.data.push(item);
     }
-    return[element,descriptionText];
+
+    removeItem(item: T){
+        if(this.data.indexOf(item) === -1){
+            return;
+        }
+        this.data.splice(this.data.indexOf(item),1);
+    }
+
+    getItems(){
+        return [...this.data];
+    }
 }
 
-function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U){
-    return 'Value: ' + obj[key];
-}
+const textStorage = new DataStorage<string>();
+const numberStorage = new DataStorage<number>();
+const objectStorage = new DataStorage<object>();
 
-extractAndConvert({name: 'Jéssica'}, 'name');
+textStorage.addItem('Jéssica');
+numberStorage.addItem(1);
+objectStorage.addItem({role: 'QA'});
+
+console.log(textStorage.getItems());
+console.log(numberStorage.getItems());
+console.log(objectStorage.getItems());

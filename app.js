@@ -1,15 +1,27 @@
 "use strict";
-function countAndDescribe(element) {
-    let descriptionText = 'Got no value';
-    if (element.length === 1) {
-        descriptionText = 'Got 1 element.';
+class DataStorage {
+    constructor() {
+        this.data = [];
     }
-    else if (element.length > 1) {
-        descriptionText = 'Got ' + element.length + ' elements.';
+    addItem(item) {
+        this.data.push(item);
     }
-    return [element, descriptionText];
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
+    }
 }
-function extractAndConvert(obj, key) {
-    return 'Value: ' + obj[key];
-}
-extractAndConvert({ name: 'Jéssica' }, 'name');
+const textStorage = new DataStorage();
+const numberStorage = new DataStorage();
+const objectStorage = new DataStorage();
+textStorage.addItem('Jéssica');
+numberStorage.addItem(1);
+objectStorage.addItem({ role: 'QA' });
+console.log(textStorage.getItems());
+console.log(numberStorage.getItems());
+console.log(objectStorage.getItems());
