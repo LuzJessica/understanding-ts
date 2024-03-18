@@ -1,6 +1,13 @@
-function merge <T extends object, U extends Object>(objA: T, objB: U){
-    return Object.assign(objA, objB);
+interface Lengthy{
+    length: number;
 }
 
-const mergeObj = merge({ name: 'Jéssica', hobbies:['Sports'] },{age:32});
-console.log(mergeObj);
+function countAndDescribe<T extends Lengthy>(element: T): [T, string]{
+    let descriptionText = 'Got no value';
+    if(element.length === 1 ){
+        descriptionText = 'Got 1 element.'
+    }else if(element.length > 1){
+        descriptionText = 'Got ' + element.length + ' elements.';
+    }
+    return[element,descriptionText];
+}

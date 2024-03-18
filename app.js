@@ -1,6 +1,11 @@
 "use strict";
-function merge(objA, objB) {
-    return Object.assign(objA, objB);
+function countAndDescribe(element) {
+    let descriptionText = 'Got no value';
+    if (element.length === 1) {
+        descriptionText = 'Got 1 element.';
+    }
+    else if (element.length > 1) {
+        descriptionText = 'Got ' + element.length + ' elements.';
+    }
+    return [element, descriptionText];
 }
-const mergeObj = merge({ name: 'Jéssica', hobbies: ['Sports'] }, { age: 32 });
-console.log(mergeObj);
