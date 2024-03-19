@@ -1,30 +1,17 @@
-class DataStorage<T>{
-    private data: T[] = [];
+function Logger(constructor: Function){
+    console.log('Logging...');
+    console.log(constructor);
+}
 
-    addItem(item: T){
-        this.data.push(item);
-    }
+@Logger
+class Person{
+    name = 'Max';
 
-    removeItem(item: T){
-        if(this.data.indexOf(item) === -1){
-            return;
-        }
-        this.data.splice(this.data.indexOf(item),1);
-    }
-
-    getItems(){
-        return [...this.data];
+    constructor(){
+        console.log('Creating person object...');
     }
 }
 
-const textStorage = new DataStorage<string>();
-const numberStorage = new DataStorage<number>();
-const objectStorage = new DataStorage<object>();
+const pers =  new Person();
+console.log(pers);
 
-textStorage.addItem('Jéssica');
-numberStorage.addItem(1);
-objectStorage.addItem({role: 'QA'});
-
-console.log(textStorage.getItems());
-console.log(numberStorage.getItems());
-console.log(objectStorage.getItems());
