@@ -41,16 +41,36 @@ class ProjectInput {
         this.attach();
 }
 
+private gatherUserInput(): [string, string, number] | void{ // return tuple or void
+    
+    const enteredTitle = this.titleInput.value;
+    const enteredDescription = this.descriptionInput.value;
+    const enteredPeople = this.peopleInput.value;
+
+    if(
+        enteredTitle.trim().length === 0 || 
+        enteredDescription.trim().length === 0 || 
+        enteredPeople.trim().length === 0
+    ){
+        alert('Invalid input, please try again!');
+        return;
+    } else {
+        return [enteredTitle, enteredDescription, +enteredPeople];// The + converts string in number. We need to do it because tuple is expecting number but .value() always return string
+    }
+}
+
 @autobind
 private submitHandler(event: Event){
     event.preventDefault();
-    console.log(this.titleInput.value);
-    console.log(this.descriptionInput.value);
-    console.log(this.peopleInput.value);
+    const userInput = this.gatherUserInput(); //receives the return of gatherUserInput method. Tuple or void
+    if(Array.isArray(userInput)){
+        const [title, desc, people] = userInput;//desctructuring arrays concept
+        console.log(title,desc,people);
+    }
 }
 
 private configure(){
-    this.element.addEventListener('submit', this.submitHandler)
+    this.element.addEventListener('submit', this.submitHandler.bind(this))
 }
 
 private attach(){
