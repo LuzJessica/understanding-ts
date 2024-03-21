@@ -76,6 +76,38 @@ button:active {
   background: #0044ff;
 }
 
+#reproved-projects {
+  border-color: #000000;
+}
+
+#reproved-projects header {
+  background: #000000;
+}
+
+#approved-projects {
+  border-color: #016f1a;
+}
+
+#approved-projects header {
+  background: #016f1a;
+}
+
+#toreview-projects {
+  border-color: #ded300;
+}
+
+#toreview-projects header {
+  background: #ded300;
+}
+
+#inanalysis-projects {
+  border-color: #ff8800;
+}
+
+#inanalysis-projects header {
+  background: #ff8800;
+}
+
 .projects h2 {
   margin: 0;
   color: white;
@@ -102,6 +134,22 @@ button:active {
   color: #0044ff;
 }
 
+#reproved-projects li h2 {
+  color: #000000;
+}
+
+#approved-projects li h2 {
+  color: #016f1a;
+}
+
+#toreview-projects li h2 {
+  color: #ded300;
+}
+
+#inanalysis-projects li h2 {
+  color: #ff8800;
+}
+
 .projects li h3 {
   color: #575757;
   font-size: 1rem;
@@ -116,6 +164,22 @@ button:active {
 }
 
 #finished-projects .droppable {
+  background: #d6e1ff;
+}
+
+#approved-projects .droppable {
+  background: #d6e1ff;
+}
+
+#reproved-projects .droppable {
+  background: #d6e1ff;
+}
+
+#toreview-projects .droppable {
+  background: #d6e1ff;
+}
+
+#inanalysis-projects .droppable {
   background: #d6e1ff;
 }
 
