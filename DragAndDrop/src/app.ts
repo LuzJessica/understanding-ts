@@ -1,4 +1,41 @@
-interface Validatable{
+//Project State Management
+
+class ProjectState{
+    private projects: any[] = [];//creates an array to receive the projects
+    private listeners: any[] = []; //it's an array of functions to be executed always something change, in this case, always new project is added
+    private static instance: ProjectState;
+    
+    private constructor(){}
+
+    static getInstance(){
+        if(this.instance){
+            return this.instance;
+        }
+        this.instance = new ProjectState();
+        return this.instance;
+    }
+
+    addListener(listenerFn: Function){
+        this.listeners.push(listenerFn);
+    }
+
+    addProject(title: string, description: string, numOfPeople: number){//each position of this array will contain an object with the properties bellow
+        const newProject = {
+            id: Math.random().toString(),
+            title: title,
+            description: description,
+            people: numOfPeople
+        };
+        this.projects.push(newProject);//adding the object to the array
+        for(const listenerFn of this.listeners){
+            listenerFn(this.projects.slice());//return a copy of a section of the array, not the original
+        }
+    }
+}
+
+const projectState = ProjectState.getInstance();
+  
+  interface Validatable{
     value: string | number;
     required?: boolean; // ? means it's boolean or undefined
     minLength?: number;
@@ -61,16 +98,31 @@ class ProjectList{
     templateElement: HTMLTemplateElement;
     hostElement: HTMLDivElement; //element which will host other elements inside of it, in this case, the app div
     element: HTMLElement; // the element which will be hosted, in this case the list, in this case, the section element
+    assignedProjects: any[];
 
     constructor(private type: 'active' | 'finished' | 'approved' | 'reproved' | 'toreview' | 'inanalysis'){
         this.templateElement = document.getElementById('project-list')! as  HTMLTemplateElement;//getting access to template
         this.hostElement = document.getElementById('app')! as HTMLDivElement; //getting access to the div 
+        this.assignedProjects = [];
 
         const importedNode = document.importNode(this.templateElement.content,true);//importing element 
         this.element = importedNode.firstElementChild as HTMLElement;//storing element (section)
         this.element.id = `${this.type}-projects`; //the id here is dynamic because we will have more than one list of projects
+        projectState.addListener((projects: any[]) => {
+            this.assignedProjects = projects;
+            this.renderProjects();
+        });
         this.attach();
         this.renderContent();  
+    }
+
+    private renderProjects(){
+        const listEl = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement;
+        for(const prjItem of this.assignedProjects){
+            const listItem = document.createElement('li');
+            listItem.textContent = prjItem.title;
+            listEl.appendChild(listItem);
+        }
     }
 
     private renderContent(){//for each instance of the class will set id and H2 title for each list
@@ -164,7 +216,7 @@ private submitHandler(event: Event){
     const userInput = this.gatherUserInput(); //receives the return of gatherUserInput method. Tuple or void
     if(Array.isArray(userInput)){
         const [title, desc, people] = userInput;//desctructuring arrays concept
-        console.log(title,desc,people);
+        projectState.addProject(title, desc, people);
         this.clearInputs();
         }
     }
