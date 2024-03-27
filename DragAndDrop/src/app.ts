@@ -1,8 +1,24 @@
-//Project State Management
+//Project Status
+enum ProjectStatus { ACTIVE, FINISHED }
 
+//Project Type
+class Project{
+    constructor(
+        public id: string, 
+        public title: string, 
+        public description: string, 
+        public people: number, 
+        public status: ProjectStatus){
+
+    }
+}
+
+type Listener = (items: Project[]) => void;
+
+//Project State Management
 class ProjectState{
-    private projects: any[] = [];//creates an array to receive the projects
-    private listeners: any[] = []; //it's an array of functions to be executed always something change, in this case, always new project is added
+    private projects: Project[] = [];//creates an array to receive the projects
+    private listeners: Listener[] = []; //it's an array of functions to be executed always something change, in this case, always new project is added
     private static instance: ProjectState;
     
     private constructor(){}
@@ -15,17 +31,12 @@ class ProjectState{
         return this.instance;
     }
 
-    addListener(listenerFn: Function){
+    addListener(listenerFn: Listener){
         this.listeners.push(listenerFn);
     }
 
     addProject(title: string, description: string, numOfPeople: number){//each position of this array will contain an object with the properties bellow
-        const newProject = {
-            id: Math.random().toString(),
-            title: title,
-            description: description,
-            people: numOfPeople
-        };
+        const newProject = new Project(Math.random().toString(), title, description, numOfPeople, ProjectStatus.ACTIVE);
         this.projects.push(newProject);//adding the object to the array
         for(const listenerFn of this.listeners){
             listenerFn(this.projects.slice());//return a copy of a section of the array, not the original
@@ -98,7 +109,7 @@ class ProjectList{
     templateElement: HTMLTemplateElement;
     hostElement: HTMLDivElement; //element which will host other elements inside of it, in this case, the app div
     element: HTMLElement; // the element which will be hosted, in this case the list, in this case, the section element
-    assignedProjects: any[];
+    assignedProjects: Project[];
 
     constructor(private type: 'active' | 'finished' | 'approved' | 'reproved' | 'toreview' | 'inanalysis'){
         this.templateElement = document.getElementById('project-list')! as  HTMLTemplateElement;//getting access to template
@@ -108,7 +119,7 @@ class ProjectList{
         const importedNode = document.importNode(this.templateElement.content,true);//importing element 
         this.element = importedNode.firstElementChild as HTMLElement;//storing element (section)
         this.element.id = `${this.type}-projects`; //the id here is dynamic because we will have more than one list of projects
-        projectState.addListener((projects: any[]) => {
+        projectState.addListener((projects: Project[]) => {
             this.assignedProjects = projects;
             this.renderProjects();
         });
