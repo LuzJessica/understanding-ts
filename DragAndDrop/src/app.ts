@@ -36,7 +36,7 @@ class ProjectState{
     }
 
     addProject(title: string, description: string, numOfPeople: number){//each position of this array will contain an object with the properties bellow
-        const newProject = new Project(Math.random().toString(), title, description, numOfPeople, ProjectStatus.ACTIVE);
+        const newProject = new Project(Math.random().toString(), title, description, numOfPeople, ProjectStatus.ACTIVE); //By default the project added will have status ACTIVE
         this.projects.push(newProject);//adding the object to the array
         for(const listenerFn of this.listeners){
             listenerFn(this.projects.slice());//return a copy of a section of the array, not the original
@@ -120,8 +120,14 @@ class ProjectList{
         this.element = importedNode.firstElementChild as HTMLElement;//storing element (section)
         this.element.id = `${this.type}-projects`; //the id here is dynamic because we will have more than one list of projects
         projectState.addListener((projects: Project[]) => {
-            this.assignedProjects = projects;
-            this.renderProjects();
+            const relevantProjects = projects.filter(prj => {
+                if(this.type === 'active'){
+                    return prj.status === ProjectStatus.ACTIVE;
+                }
+                return prj.status === ProjectStatus.FINISHED
+            });//list projects
+            this.assignedProjects = relevantProjects;//store projects
+            this.renderProjects();//render projects
         });
         this.attach();
         this.renderContent();  
@@ -129,6 +135,7 @@ class ProjectList{
 
     private renderProjects(){
         const listEl = document.getElementById(`${this.type}-projects-list`)! as HTMLUListElement;
+        listEl.innerHTML='';//It cleans the list everytime we will render the projects, avoiding duplication or reendering of projects that were there already
         for(const prjItem of this.assignedProjects){
             const listItem = document.createElement('li');
             listItem.textContent = prjItem.title;
